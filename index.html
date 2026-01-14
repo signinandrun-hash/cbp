@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CBP</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- PAGE 1 ---------- */
+#enterPage{
+    position:fixed;
+    inset:0;
+    background:url("enter.png") center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:10;
+}
+
+#enterBtn{
+    padding:20px 60px;
+    font-size:32px;
+    letter-spacing:4px;
+    cursor:pointer;
+    background:rgba(0,0,0,0.7);
+    color:white;
+    border:2px solid white;
+    transition:0.3s;
+}
+#enterBtn:hover{ transform:scale(1.1); }
+
+@media (max-width: 768px) {
+    #enterBtn{
+        padding:16px 40px;
+        font-size:28px;
+        letter-spacing:3px;
+    }
+}
+
+@media (max-width: 480px) {
+    #enterBtn{
+        padding:14px 30px;
+        font-size:24px;
+        letter-spacing:2px;
+    }
+}
+
+/* ---------- PAGE 2 ---------- */
+#mainPage{
+    position:fixed;
+    inset:0;
+    background:url("background.png") center/cover no-repeat;
+    display:none;
+    overflow:hidden;
+}
+
+#name{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:300px;
+    object-fit: contain;
+    object-position: top center;
+    z-index:1;
+}
+
+@media (max-width: 768px) {
+    #name{
+        height:180px;
+    }
+}
+
+@media (max-width: 480px) {
+    #name{
+        height:150px;
+    }
+}
+
+#cbr{
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:777px;
+    max-width: 90%;
+    animation:shake 0.25s infinite;
+    z-index:4;
+}
+
+@media (max-width: 1024px) {
+    #cbr{
+        width:650px;
+        bottom:-15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #cbr{
+        width:500px;
+        bottom:-10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #cbr{
+        width:350px;
+        bottom:-5px;
+    }
+}
+
+@media (max-width: 360px) {
+    #cbr{
+        width:300px;
+    }
+}
+
+@keyframes shake{
+    0%{transform:translate(-50%,0) rotate(0deg);}
+    25%{transform:translate(-48%,2px) rotate(-1deg);}
+    50%{transform:translate(-50%,-2px) rotate(1deg);}
+    75%{transform:translate(-52%,2px) rotate(0deg);}
+    100%{transform:translate(-50%,0) rotate(-1deg);}
+}
+
+.sticker{
+    position:absolute;
+    top:50%;
+    width:660px;
+    max-width: 40%;
+    transform:translateY(-50%);
+    transition:transform 0.3s;
+    z-index:5;
+    cursor:pointer;
+    touch-action: manipulation;
+}
+.sticker.left{ left:0; }
+.sticker.right{ right:0; }
+
+@media (max-width: 1024px) {
+    .sticker{
+        width:400px;
+        max-width: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sticker{
+        width:300px;
+        max-width: 40%;
+    }
+    .sticker.left{ left:-30px; }
+    .sticker.right{ right:-30px; }
+}
+
+@media (max-width: 480px) {
+    .sticker{
+        width:220px;
+        max-width: 45%;
+    }
+    .sticker.left{ left:-40px; }
+    .sticker.right{ right:-40px; }
+}
+
+@media (max-width: 360px) {
+    .sticker{
+        width:180px;
+    }
+    .sticker.left{ left:-50px; }
+    .sticker.right{ right:-50px; }
+}
+
+.sticker:hover, .sticker:active{
+    transform:translateY(-50%) scale(1.15);
+    z-index:6;
+}
+
+.sticker img{
+    width:100%;
+    display:block;
+    pointer-events: none;
+}
+
+/* BUTTONS */
+.sticker-btn{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:36px;
+    font-weight:900;
+    color:white;
+    text-decoration:none;
+    pointer-events:none;
+    z-index:7;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .sticker-btn{
+        font-size:28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sticker-btn{
+        font-size:24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sticker-btn{
+        font-size:20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .sticker-btn{
+        font-size:18px;
+    }
+}
+
+/* TOKEN */
+#token{
+    position:absolute;
+    bottom:69px;
+    left:50%;
+    transform:translateX(-50%);
+    padding:14px 26px;
+    background:rgba(0,0,0,0.75);
+    color:#00ffcc;
+    font-family:monospace;
+    font-size:22px;
+    z-index:5;
+    user-select:text;
+    border:1px solid rgba(0,255,200,0.6);
+    white-space: nowrap;
+    text-align: center;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+    #token{
+        font-size:20px;
+        padding:12px 20px;
+        bottom:60px;
+    }
+}
+
+@media (max-width: 768px) {
+    #token{
+        font-size:18px;
+        padding:10px 16px;
+        bottom:50px;
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    #token{
+        font-size:16px;
+        padding:8px 12px;
+        bottom:40px;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 360px) {
+    #token{
+        font-size:14px;
+        padding:6px 10px;
+        bottom:35px;
+    }
+}
+
+/* MUSIC */
+#musicBtn{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    background:rgba(0,0,0,0.7);
+    border-radius:50%;
+    color:white;
+    font-size:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:10;
+    touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+    #musicBtn{
+        width:44px;
+        height:44px;
+        font-size:20px;
+        bottom:15px;
+        right:15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #musicBtn{
+        width:40px;
+        height:40px;
+        font-size:18px;
+        bottom:10px;
+        right:10px;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    #name{
+        height:120px;
+    }
+    
+    .sticker{
+        width:250px;
+        max-width: 30%;
+    }
+    
+    #cbr{
+        width:400px;
+        bottom:0;
+    }
+    
+    #token{
+        font-size:14px;
+        padding:6px 10px;
+        bottom:30px;
+    }
+    
+    #musicBtn{
+        width:36px;
+        height:36px;
+        font-size:16px;
+    }
+}
+
+.sticker, #enterBtn, #musicBtn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .sticker:hover {
+        transform: translateY(-50%) scale(1);
+    }
+    
+    .sticker:active {
+        transform: translateY(-50%) scale(1.15);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="enterPage">
+    <div id="enterBtn">ENTER</div>
+</div>
+
+<div id="mainPage">
+    <img src="name.png" id="name" alt="CBR Name">
+    <img src="cbr.png" id="cbr" alt="CBR Logo">
+    
+    <div class="sticker left">
+        <img src="stiker01.png" alt="Buy Sticker">
+        <a href="https://pump.fun/tokenlink" class="sticker-btn" target="_blank">BUY</a>
+    </div>
+
+    <div class="sticker right">
+        <img src="stiker02.png" alt="Chat Sticker">
+        <a href="https://t.me/+LMh_7hDQiyVjZGI0" class="sticker-btn" target="_blank">CHAT</a>
+    </div>
+
+    <div id="token">0xA1B2C3D4E5F6TOKENpump</div>
+    <div id="musicBtn">🔊</div>
+</div>
+
+<audio id="music" src="ExtremelyLoudIndianMusic.mp3" loop></audio>
+
+<script>
+const enterBtn = document.getElementById("enterBtn");
+const enterPage = document.getElementById("enterPage");
+const mainPage = document.getElementById("mainPage");
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+enterBtn.onclick = () => {
+    enterPage.style.display = "none";
+    mainPage.style.display = "block";
+    music.play();
+}
+
+musicBtn.onclick = () => {
+    if(music.paused){
+        music.play();
+        musicBtn.textContent="🔊";
+    }else{
+        music.pause();
+        musicBtn.textContent="🔇";
+    }
+}
+
+document.querySelectorAll('.sticker').forEach(sticker => {
+    sticker.addEventListener('click', function(e) {
+        if(e.target.classList.contains('sticker-btn') || e.target.tagName === 'A') {
+            return;
+        }
+        
+        const link = this.querySelector('.sticker-btn');
+        if(link && link.href) {
+            window.open(link.href, '_blank');
+        }
+    });
+});
+
+document.addEventListener('contextmenu', function(e) {
+    if(e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        document.body.style.display = 'none';
+        document.body.offsetHeight;
+        document.body.style.display = '';
+    }, 250);
+});
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+</script>
+
+</body>
+</html>
